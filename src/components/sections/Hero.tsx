@@ -118,7 +118,7 @@ export function Hero() {
 
       {/* Focus Area Overlay - High Contrast Sharp */}
       <motion.div 
-        className="absolute inset-0 z-10 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none hidden md:block"
         style={{ clipPath, opacity: boxOpacity }}
       >
         <img 
