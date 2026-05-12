@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section id="studio" className="relative min-h-screen py-40 px-8 flex flex-col items-center">
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-12">
-        <div className="md:col-span-4 self-start sticky top-40">
+        <div className="md:col-span-4 self-start md:sticky md:top-40">
            <span className="text-[10px] font-mono tracking-[0.5em] text-accent font-bold uppercase mb-4 block">01 / About Me</span>
            <h2 className="text-6xl font-bold tracking-tighter leading-[0.9] uppercase italic font-serif">About <br/> The <span className="text-white opacity-50 not-italic font-sans">Creator</span></h2>
         </div>
