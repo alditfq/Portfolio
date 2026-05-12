@@ -131,7 +131,7 @@ export function Hero() {
 
       {/* Frame Outline & Smaller Crosshair */}
       <motion.div
-        className="absolute z-30 pointer-events-none border border-white/60 flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+        className="absolute z-30 pointer-events-none border border-white/60 items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.1)] hidden md:flex"
         style={{
           width: frameWidth,
           height: frameWidth,
