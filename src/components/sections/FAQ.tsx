@@ -1,12 +1,12 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 
-interface FAQItem {
+interface FAQItemData {
   question: string;
   answer: string;
 }
 
-const faqs: FAQItem[] = [
+const faqs: FAQItemData[] = [
   {
     question: 'Bersedia untuk magang?',
     answer: 'Ya, saya saat ini terbuka untuk kesempatan magang di mana saya bisa berkontribusi dan belajar.',
@@ -37,7 +37,7 @@ const faqs: FAQItem[] = [
   },
 ];
 
-function FAQItem({ item, index }: { item: FAQItem; index: number }) {
+function FAQItem({ item, index }: { item: FAQItemData; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
