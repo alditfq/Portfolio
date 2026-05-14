@@ -9,6 +9,7 @@
 //  • trailColor     ‑ HEX string used for the dots (default lime‑green)
 //  • dotSize        ‑ pixel size of each painted square (1–4 recommended)
 //  • fadeDuration   ‑ ms until a dot fully fades (via alpha decay)
+//  • maxTrailLength ‑ maximum number of dots before they start disappearing
 //  • className      ‑ tailwind classes for outer wrapper (size control)
 //
 // The component uses `requestAnimationFrame` to gradually clear older drawings
@@ -21,16 +22,25 @@ interface CursorDitherTrailProps {
   trailColor?: string; // monochrome colour of dots
   dotSize?: number; // side length of a pixel square (1‑4px)
   fadeDuration?: number; // milliseconds for a dot to vanish
+  maxTrailLength?: number; // max dots before fading starts
   className?: string;
+}
+
+interface Dot {
+  x: number;
+  y: number;
+  timestamp: number;
 }
 
 export function CursorDitherTrail({
   trailColor = "#D0FBB6", // lime by default
   dotSize = 4,
   fadeDuration = 600,
+  maxTrailLength = 150, // limit trail length
   className = "w-full h-full",
 }: CursorDitherTrailProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const dotsRef = useRef<Dot[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -59,38 +69,54 @@ export function CursorDitherTrail({
     const g = (int >> 8) & 255;
     const b = int & 255;
 
-    // Simple 2×2 Bayer matrix for random‑looking dither threshold
-    const bayer = [0, 2, 3, 1];
+    const addDot = (x: number, y: number) => {
+      dotsRef.current.push({
+        x,
+        y,
+        timestamp: performance.now(),
+      });
 
-    const paintDot = (x: number, y: number) => {
-      // For debug: always paint a fully opaque square so we can verify
-      ctx.fillStyle = `rgba(${r},${g},${b},1)`;
-      ctx.fillRect(x, y, dotSize, dotSize);
+      // Remove oldest dots if exceeding max length
+      if (dotsRef.current.length > maxTrailLength) {
+        dotsRef.current.shift();
+      }
     };
 
-    let lastTime = performance.now();
+    let animationFrameId: number;
 
-    const fadeStep = () => {
+    const render = () => {
       const now = performance.now();
-      const delta = now - lastTime;
-      lastTime = now;
 
-      // Clear with low alpha to fade previous dots
-      const fadeAlpha = delta / fadeDuration;
-      ctx.fillStyle = `rgba(0,0,0,${fadeAlpha})`;
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillRect(0, 0, width, height);
-      ctx.globalCompositeOperation = "source-over";
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
 
-      requestAnimationFrame(fadeStep);
+      // Filter out expired dots and render active ones
+      dotsRef.current = dotsRef.current.filter((dot) => {
+        const age = now - dot.timestamp;
+        
+        if (age > fadeDuration) {
+          return false; // Remove expired dot
+        }
+
+        // Calculate opacity based on age
+        const opacity = 1 - age / fadeDuration;
+        
+        ctx.fillStyle = `rgba(${r},${g},${b},${opacity})`;
+        ctx.fillRect(dot.x, dot.y, dotSize, dotSize);
+
+        return true; // Keep dot
+      });
+
+      animationFrameId = requestAnimationFrame(render);
     };
-    requestAnimationFrame(fadeStep);
+
+    animationFrameId = requestAnimationFrame(render);
 
     const onMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       const x = Math.floor((e.clientX - rect.left) / dotSize) * dotSize;
       const y = Math.floor((e.clientY - rect.top) / dotSize) * dotSize;
-      paintDot(x, y);
+      addDot(x, y);
     };
 
     window.addEventListener("mousemove", onMove);
@@ -98,8 +124,9 @@ export function CursorDitherTrail({
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [trailColor, dotSize, fadeDuration]);
+  }, [trailColor, dotSize, fadeDuration, maxTrailLength]);
 
   return <canvas ref={canvasRef} className={className} />;
 }

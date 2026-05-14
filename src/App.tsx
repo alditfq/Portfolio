@@ -38,7 +38,8 @@ export default function App() {
           className="w-full h-full"
           trailColor="#3b82f6"
           dotSize={3}
-          fadeDuration={800}
+          fadeDuration={600}
+          maxTrailLength={100}
         />
       </div>
 
