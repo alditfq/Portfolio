@@ -9,7 +9,7 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'Tersedia untuk magang?',
+    question: 'Bersedia untuk magang?',
     answer: 'Ya, saya saat ini terbuka untuk kesempatan magang di mana saya bisa berkontribusi dan belajar.',
   },
   {
@@ -22,15 +22,11 @@ const faqs: FAQItem[] = [
   },
   {
     question: 'Teknologi apa yang dikuasai?',
-    answer: 'Saya bekerja dengan teknologi web modern termasuk React, TypeScript, Tailwind CSS, Node.js, dan berbagai tools desain.',
+    answer: 'Saya bekerja dengan teknologi web modern termasuk React, TypeScript, Tailwind CSS, Node.js, Laravel dan berbagai tools lain.',
   },
   {
     question: 'Berapa lama waktu pengerjaan project?',
     answer: 'Tergantung skala dan kompleksitas. Project kecil bisa 1-2 minggu, sedangkan yang lebih besar bisa beberapa bulan.',
-  },
-  {
-    question: 'Menyediakan support setelah project selesai?',
-    answer: 'Ya, saya menawarkan paket maintenance dan support untuk project setelah selesai.',
   },
   {
     question: 'Bagaimana proses desain yang dilakukan?',

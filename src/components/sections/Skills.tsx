@@ -1,128 +1,126 @@
-import { motion } from 'motion/react';
+import { motion, useMotionValue, useSpring } from "motion/react";
+import React, { useRef } from "react";
+import EditorialLabel from "@/components/ui/EditorialLabel";
 
-const technicalSkills = [
-  'Editing',
-  'Web Development',
-  'UI Design',
-  'Microsoft Office',
+interface Skill {
+  name: string;
+  category: string;
+}
+
+const skills: Skill[] = [
+  { name: "Editing", category: "Technical" },
+  { name: "Web Development", category: "Technical" },
+  { name: "UI Design", category: "Technical" },
+  { name: "Microsoft Office", category: "Technical" },
+  { name: "Communication", category: "Soft Skills" },
+  { name: "Teamwork", category: "Soft Skills" },
+  { name: "Problem Solving", category: "Soft Skills" },
+  { name: "Fast Learning", category: "Soft Skills" },
 ];
 
-const softSkills = [
-  'Communication',
-  'Teamwork',
-  'Problem Solving',
-  'Fast Learning',
-];
+const categories = [...new Set(skills.map((s) => s.category))];
+
+function SkillPill({ name }: { name: string; key?: React.Key }) {
+  const ref = useRef<HTMLDivElement>(null);
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
+  const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
+
+  function onMouseMove(e: React.MouseEvent) {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    x.set((e.clientX - centerX) * 0.3);
+    y.set((e.clientY - centerY) * 0.3);
+  }
+
+  function onMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{ x: mouseX, y: mouseY }}
+      whileHover={{ scale: 1.05 }}
+      initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      viewport={{ once: true }}
+      className="relative group cursor-none"
+    >
+      <div className="absolute inset-0 bg-accent/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+      <div className="relative px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 group-hover:border-accent/40 group-hover:bg-white/10">
+        <span className="text-sm font-display tracking-wider text-white/70 group-hover:text-white transition-colors">
+          {name}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative min-h-screen py-40 px-8 flex flex-col items-center">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-12">
-        {/* Header */}
-        <div className="md:col-span-4 self-start md:sticky md:top-40">
-          <span className="text-[10px] font-mono tracking-[0.5em] text-accent font-bold uppercase mb-4 block">
-            02 / Skills
-          </span>
-          <h2 className="text-6xl font-bold tracking-tighter leading-[0.9] uppercase italic font-serif">
-            What I <br /> <span className="text-white opacity-50 not-italic font-sans">Bring</span>
-          </h2>
+    <section id="skills" className="relative px-6 py-32 max-w-7xl mx-auto w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        {/* Left Column: Title & Info */}
+        <div className="lg:col-span-4 space-y-8">
+          <EditorialLabel>Capabilities</EditorialLabel>
+          <div className="space-y-6">
+            <h2 className="text-5xl lg:text-6xl font-display font-light leading-tight tracking-tight">
+              Curated <br />
+              <span className="italic">Development</span> <br />
+              Expertise.
+            </h2>
+            <p className="text-white/50 text-lg font-sans max-w-sm leading-relaxed">
+              Menggabungkan presisi teknis dengan visi kreatif untuk membangun pengalaman digital yang immersive.
+            </p>
+          </div>
         </div>
 
-        {/* Skills Content */}
-        <div className="md:col-span-8 flex flex-col gap-16">
-          {/* Technical Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div className="flex items-center gap-4">
-              <div className="h-[1px] w-12 bg-accent/50" />
-              <h3 className="text-2xl font-bold tracking-tight uppercase font-serif italic text-accent">
-                Technical
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {technicalSkills.map((skill, index) => (
+        {/* Right Column: Skills Grid */}
+        <div className="lg:col-span-8">
+          <div className="space-y-16">
+            {categories.map((cat, idx) => (
+              <div key={cat} className="space-y-8">
                 <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden"
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-center gap-4"
                 >
-                  <div className="relative p-6 border border-white/10 rounded-lg backdrop-blur-sm hover:border-accent transition-all duration-300 hover:bg-accent/5">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgba(0,255,136,0.5)]" />
-                      <span className="text-lg font-light text-white/80 group-hover:text-white transition-colors">
-                        {skill}
-                      </span>
-                    </div>
-                  </div>
+                  <span className="text-xs font-mono text-accent/60 uppercase tracking-[0.2em]">
+                    {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                  </span>
+                  <div className="h-[1px] flex-1 bg-white/10" />
+                  <span className="text-sm font-display uppercase tracking-widest text-white/30">
+                    {cat}
+                  </span>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Soft Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
-          >
-            <div className="flex items-center gap-4">
-              <div className="h-[1px] w-12 bg-blue-500/50" />
-              <h3 className="text-2xl font-bold tracking-tight uppercase font-serif italic text-blue-500">
-                Soft Skills
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {softSkills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden"
-                >
-                  <div className="relative p-6 border border-white/10 rounded-lg backdrop-blur-sm hover:border-blue-500 transition-all duration-300 hover:bg-blue-500/5">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                      <span className="text-lg font-light text-white/80 group-hover:text-white transition-colors">
-                        {skill}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Bottom Accent */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="flex items-center gap-4 pt-8"
-          >
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-accent via-blue-500 to-transparent" />
-            <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/30">
-              Always Learning & Growing
-            </p>
-          </motion.div>
+                
+                <div className="flex flex-wrap gap-4">
+                  {skills
+                    .filter((s) => s.category === cat)
+                    .map((skill) => (
+                      <SkillPill key={skill.name} name={skill.name} />
+                    ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Decorative Gradient Line */}
+      <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );
 }
