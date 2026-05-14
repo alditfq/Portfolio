@@ -59,7 +59,7 @@ function FAQItem({ item, index }: { item: FAQItem; index: number }) {
           </span>
           
           {/* Question */}
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-light italic text-accent leading-tight flex-1 group-hover:text-accent/80 transition-colors">
+          <h3 className="text-lg md:text-xl lg:text-2xl font-light italic text-accent leading-tight flex-1 group-hover:text-accent/80 transition-colors">
             {item.question}
           </h3>
 
@@ -107,7 +107,7 @@ export default function FAQ() {
     <section id="faq" className="relative py-32 px-6 max-w-7xl mx-auto w-full">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
         {/* Left Column: Header */}
-        <div className="lg:col-span-4 space-y-4">
+        <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-40 self-start">
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
