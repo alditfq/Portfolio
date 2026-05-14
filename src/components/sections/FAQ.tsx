@@ -9,36 +9,36 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'Available for internship?',
-    answer: 'Yes, I am currently open for internship opportunities where I can contribute and learn.',
+    question: 'Tersedia untuk magang?',
+    answer: 'Ya, saya saat ini terbuka untuk kesempatan magang di mana saya bisa berkontribusi dan belajar.',
   },
   {
-    question: 'Open for freelance?',
-    answer: 'Depends on the project. Feel free to reach out and we can discuss your requirements.',
+    question: 'Menerima project freelance?',
+    answer: 'Tergantung projectnya. Silakan hubungi saya dan kita bisa diskusikan kebutuhan Anda.',
   },
   {
-    question: 'Preferred work style?',
-    answer: 'Remote / Hybrid. I am flexible and can adapt to different work environments.',
+    question: 'Gaya kerja yang disukai?',
+    answer: 'Remote / Hybrid. Saya fleksibel dan bisa beradaptasi dengan berbagai lingkungan kerja.',
   },
   {
-    question: 'What technologies do you work with?',
-    answer: 'I work with modern web technologies including React, TypeScript, Tailwind CSS, Node.js, and various design tools.',
+    question: 'Teknologi apa yang dikuasai?',
+    answer: 'Saya bekerja dengan teknologi web modern termasuk React, TypeScript, Tailwind CSS, Node.js, dan berbagai tools desain.',
   },
   {
-    question: 'How long does a typical project take?',
-    answer: 'It varies depending on the scope and complexity. Small projects can take 1-2 weeks, while larger ones may take several months.',
+    question: 'Berapa lama waktu pengerjaan project?',
+    answer: 'Tergantung skala dan kompleksitas. Project kecil bisa 1-2 minggu, sedangkan yang lebih besar bisa beberapa bulan.',
   },
   {
-    question: 'Do you provide ongoing support?',
-    answer: 'Yes, I offer maintenance and support packages for projects after completion.',
+    question: 'Menyediakan support setelah project selesai?',
+    answer: 'Ya, saya menawarkan paket maintenance dan support untuk project setelah selesai.',
   },
   {
-    question: 'What is your design process?',
-    answer: 'I start with understanding your needs, create wireframes and prototypes, iterate based on feedback, and then develop the final product.',
+    question: 'Bagaimana proses desain yang dilakukan?',
+    answer: 'Saya mulai dengan memahami kebutuhan Anda, membuat wireframe dan prototype, iterasi berdasarkan feedback, lalu develop produk final.',
   },
   {
-    question: 'Can you work with existing teams?',
-    answer: 'Absolutely! I enjoy collaborating with teams and can integrate seamlessly into your workflow.',
+    question: 'Bisa bekerja dengan tim yang sudah ada?',
+    answer: 'Tentu! Saya senang berkolaborasi dengan tim dan bisa berintegrasi dengan workflow Anda.',
   },
 ];
 
@@ -104,7 +104,7 @@ export default function FAQ() {
           <div className="mt-8 flex flex-col gap-4">
             <div className="h-[1px] w-12 bg-accent/50" />
             <p className="text-sm font-mono text-white/40 tracking-wider">
-              Everything you need to know
+              Semua yang perlu Anda tahu
             </p>
           </div>
         </div>
@@ -132,15 +132,15 @@ export default function FAQ() {
             className="mt-12 p-8 border border-white/10 rounded-lg backdrop-blur-sm bg-white/5"
           >
             <p className="text-lg text-white/80 font-light mb-4">
-              Still have questions?
+              Masih ada pertanyaan?
             </p>
             <p className="text-sm text-white/60 font-light leading-relaxed">
-              Feel free to reach out through the contact form below. I typically respond within 24 hours.
+              Jangan ragu untuk menghubungi saya melalui form kontak di bawah. Biasanya saya merespon dalam 24 jam.
             </p>
             <div className="mt-6 flex items-center gap-4">
               <div className="h-[1px] flex-1 bg-gradient-to-r from-accent to-transparent" />
               <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-accent">
-                Let's Talk
+                Mari Ngobrol
               </span>
             </div>
           </motion.div>
