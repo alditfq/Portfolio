@@ -14,6 +14,7 @@ import Timeline from '@/components/sections/Timeline';         // From Port 3 (J
 import ContactForm from '@/components/sections/ContactForm';   // From Port 1 (Get in Touch)
 import Footer from '@/components/sections/Footer';             // From Port 3
 import { Showcase } from '@/components/sections/Showcase';     // From Projek1
+import { CursorDitherTrail } from '@/components/ui/cursor-dither-trail';
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 
@@ -30,6 +31,16 @@ export default function App() {
     <main className="relative bg-base selection:bg-accent selection:text-base">
       <div className="noise-overlay" />
       <Preloader />
+
+      {/* Global Cursor Dither Trail Effect */}
+      <div className="fixed inset-0 z-[9999] pointer-events-none">
+        <CursorDitherTrail
+          className="w-full h-full"
+          trailColor="#3b82f6"
+          dotSize={3}
+          fadeDuration={800}
+        />
+      </div>
 
       <AnimatePresence>
         <motion.div

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useMotionTemplate, animate } from 'motion/react';
 import { SplitText } from '@/components/motion/SplitText';
-import { CursorDitherTrail } from '@/components/ui/cursor-dither-trail';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -192,16 +191,6 @@ export function Hero() {
       {/* Atmospheric Glow - White/Cyan for contrast on dark */}
       <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
-
-      {/* Cursor Dither Trail Effect */}
-      <div className="absolute inset-0 z-40 pointer-events-none">
-        <CursorDitherTrail
-          className="w-full h-full"
-          trailColor="#00ff88"
-          dotSize={3}
-          fadeDuration={800}
-        />
-      </div>
     </section>
   );
 }
