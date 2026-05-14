@@ -1,6 +1,5 @@
 import { motion, useMotionValue, useSpring } from "motion/react";
 import React, { useRef } from "react";
-import EditorialLabel from "@/components/ui/EditorialLabel";
 
 interface Skill {
   name: string;
@@ -8,6 +7,18 @@ interface Skill {
 }
 
 const skills: Skill[] = [
+  { name: "React", category: "Front End" },
+  { name: "Next.js", category: "Front End" },
+  { name: "Tailwind Css", category: "Front End" },
+  { name: "Framer Motion", category: "Front End" },
+  { name: "PHP", category: "Back End" },
+  { name: "Laravel", category: "Back End" },
+  { name: "MySQL", category: "Back End" },
+  { name: "Firebase", category: "Back End" },
+  { name: "UI Design", category: "Visual Work" },
+  { name: "Video Editing", category: "Visual Work" },
+  { name: "Photo Editing", category: "Visual Work" },
+  { name: "Typography", category: "Visual Work" },
   { name: "Editing", category: "Technical" },
   { name: "Web Development", category: "Technical" },
   { name: "UI Design", category: "Technical" },
@@ -68,25 +79,26 @@ function SkillPill({ name }: { name: string; key?: React.Key }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative px-6 py-32 max-w-7xl mx-auto w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+    <section id="skills" className="relative min-h-screen py-40 px-8 flex flex-col items-center">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-12">
         {/* Left Column: Title & Info */}
-        <div className="lg:col-span-4 space-y-8">
-          <EditorialLabel>Capabilities</EditorialLabel>
-          <div className="space-y-6">
-            <h2 className="text-5xl lg:text-6xl font-display font-light leading-tight tracking-tight">
-              Curated <br />
-              <span className="italic">Development</span> <br />
-              Expertise.
-            </h2>
-            <p className="text-white/50 text-lg font-sans max-w-sm leading-relaxed">
+        <div className="md:col-span-4 self-start md:sticky md:top-40">
+          <span className="text-[10px] font-mono tracking-[0.5em] text-accent font-bold uppercase mb-4 block">
+            02 / Skills
+          </span>
+          <h2 className="text-6xl font-bold tracking-tighter leading-[0.9] uppercase italic font-serif">
+            Skills <br />
+            Behind <span className="text-white opacity-50 not-italic font-sans">the Screen</span>
+          </h2>
+          <div className="mt-8">
+            <p className="text-white/50 text-lg font-sans leading-relaxed">
               Menggabungkan presisi teknis dengan visi kreatif untuk membangun pengalaman digital yang immersive.
             </p>
           </div>
         </div>
 
         {/* Right Column: Skills Grid */}
-        <div className="lg:col-span-8">
+        <div className="md:col-span-8">
           <div className="space-y-16">
             {categories.map((cat, idx) => (
               <div key={cat} className="space-y-8">
@@ -118,9 +130,6 @@ export default function Skills() {
           </div>
         </div>
       </div>
-
-      {/* Decorative Gradient Line */}
-      <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );
 }

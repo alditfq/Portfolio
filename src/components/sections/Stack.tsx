@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 
 const stack = [
-  "React", "Next.js", "Laravel", "Tailwind CSS", "Framer", "FireBase", "Figma", "MySQL", "GitHub", "Git", "Gitlab"
+  "React", "Laravel", "Tailwind CSS", "FireBase", "Figma", "MySQL", "GitHub"
 ];
 
 function wrap(min: number, max: number, v: number) {
