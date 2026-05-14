@@ -94,7 +94,7 @@ export const Showcase = () => {
               </motion.h2>
            </div>
            <div className="flex flex-col items-end gap-2 text-right">
-              <p className="text-sm font-mono text-white/40 tracking-widest uppercase">Interactive Experiences — 2026</p>
+              <p className="text-sm font-mono text-white/40 tracking-widest uppercase">Selected Project — 2026</p>
               <div className="w-32 h-[1px] bg-accent/30" />
            </div>
         </div>

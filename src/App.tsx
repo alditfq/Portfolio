@@ -12,6 +12,7 @@ import Skills from '@/components/sections/Skills';             // Skills section
 import Projects from '@/components/Projects';
 import Stack from '@/components/sections/Stack';               // From Port 3
 import Timeline from '@/components/sections/Timeline';         // From Port 3 (Journey)
+import FAQ from '@/components/sections/FAQ';                   // FAQ section
 import ContactForm from '@/components/sections/ContactForm';   // From Port 1 (Get in Touch)
 import Footer from '@/components/sections/Footer';             // From Port 3
 import { Showcase } from '@/components/sections/Showcase';     // From Projek1
@@ -72,6 +73,9 @@ export default function App() {
 
           {/* Journey/Timeline — Port 3 */}
           <Timeline />
+
+          {/* FAQ Section */}
+          <FAQ />
 
           {/* Get in Touch — Port 1 (full contact form) */}
           <ContactForm />
