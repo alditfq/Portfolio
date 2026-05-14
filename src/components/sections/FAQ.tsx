@@ -6,6 +6,11 @@ interface FAQItemData {
   answer: string;
 }
 
+interface FAQItemProps {
+  item: FAQItemData;
+  index: number;
+}
+
 const faqs: FAQItemData[] = [
   {
     question: 'Bersedia untuk magang?',
@@ -37,7 +42,7 @@ const faqs: FAQItemData[] = [
   },
 ];
 
-function FAQItem({ item, index }: { item: FAQItemData; index: number }) {
+function FAQItem({ item, index }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
