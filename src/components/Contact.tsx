@@ -64,7 +64,7 @@ export default function Contact() {
             ))}
          </div>
          <p className="text-[10px] font-mono tracking-widest text-white/20 uppercase">
-           Designed by Aether © 2024 Project Ether
+           Designed by Aldiyee © 2026 Personal Portfolio Aldiyee
          </p>
          <div className="flex gap-12 font-mono text-[10px] tracking-widest text-white/40 uppercase">
             <a href="#" className="hover:text-accent">Privacy</a>

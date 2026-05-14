@@ -101,7 +101,6 @@ export default function Navbar() {
             ))}
             <div className="flex gap-6 mt-4">
               <a href="#" className="p-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors"><Github className="w-5 h-5" /></a>
-              <a href="#" className="p-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors"><Linkedin className="w-5 h-5" /></a>
               <a href="mailto:lihataldi@gmail.com" className="p-3 bg-white text-black rounded-full hover:bg-accent transition-colors"><Mail className="w-5 h-5" /></a>
             </div>
           </motion.div>

@@ -8,6 +8,7 @@ import Preloader from '@/components/Preloader';
 import Navbar from '@/components/Navbar';
 import { Hero } from '@/components/sections/Hero';             // From Port 4 (cinematic crosshair)
 import About from '@/components/About';
+import Skills from '@/components/sections/Skills';             // Skills section
 import Projects from '@/components/Projects';
 import Stack from '@/components/sections/Stack';               // From Port 3
 import Timeline from '@/components/sections/Timeline';         // From Port 3 (Journey)
@@ -56,6 +57,9 @@ export default function App() {
 
           {/* About — Port 2 original */}
           <About />
+
+          {/* Skills Section */}
+          <Skills />
 
           {/* Projects — Port 2 original */}
           <Projects />
